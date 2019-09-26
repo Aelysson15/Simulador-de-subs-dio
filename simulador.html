@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Simulador de subsídio">
+    <meta name="author" content="Aelysson Dionísio">
+
+    <title>Simulador de subsídio</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css">
+
+    <link href="css/freelancer.css" rel="stylesheet">
+
+    <!-- mdb -->
+    <link href="mdb/css/mdb.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        <label>Nome</label>
+                        <input class="form-control" id="name" type="text" placeholder="Nome" required="required"
+                            data-validation-required-message="Insira seu nome.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        <label>E-mail</label>
+                        <input class="form-control" id="email" type="email" placeholder="E-mail" required="required"
+                            data-validation-required-message="Insira seu e-mail.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        <label>Telefone</label>
+                        <input class="form-control" id="phone" type="tel" placeholder="Telefone" required="required"
+                            data-validation-required-message="Insira seu telefone.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <!-- <div class="control-group">
+                  <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                    <label>Renda</label>
+                    <input class="form-control" id="sua_renda" type="number" placeholder="Renda" required="required"
+                      data-validation-required-message="Informe sua renda.">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div> -->
+                <br>
+                <div id="success"></div>
+                <div class="form-group">
+                    <button style="margin: auto; width: 100%;" type="submit" name="inscricao"
+                        class="btn btn-success rounded btn-xl" id="sendMessageButton"
+                        onclick="ocultar();">CONTINUAR</button>
+                </div>
+            </form>
+
+            <div id="dvConteudo" style="display: none;">
+                <div class="control-group">
+                    <h3 style="font-weight: 600;color: #00c851;font-size: 20px;">R$ </h3>
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        <label>Renda (apenas números)</label>
+                        <input class="form-control" id="renda" step="100" onchange="exibir_ocultar(this)" type="number"
+                            placeholder="Sua renda" equired="required">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button style="margin: auto; width: 100%;" class="btn btn-success rounded btn-xl"
+                        onclick="exibir_ocultar(this);">Calcular</button>
+                </div>
+
+                <div class="row card" style="min-height: 100%;
+                  color: #FAFAFA;
+                  margin-bottom: 50px;">
+                    <div class="col-md-12" id="s1"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 31.665,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s2"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 31.665,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s3"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 31.665,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s4"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 29.750,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s5"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 27.836,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s6"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 25.992,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s7"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 24.008,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s8"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 22.094,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s9"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 20.180,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s10"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 18.266,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s11"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 16.352,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s12"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 14.242,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s13"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 12.304,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s14"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 10.538,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s15"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 8.944,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s16"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 7.523,00</h3>
+                    </div>
+                    <div class="col-md-12" id="s17"
+                        style="display: none; position: absolute; background-color: #00c851;">
+                        <h3 class="subsidio">Subsídio: <span>Até</span><br> R$ 6.274,00</h3>
+                    </div>
+
+                    <div class="col-md-12" id="invalida"
+                        style="display: none; position: absolute; background-color: #FFC107;">
+                        <p class="subsidio-invalido">Ops! <br>
+                            <span style="font-weight: 500; font-size: 16px;">
+                                Esta simulação faz parte do programa 1.5 do Minha Casa Minha Vida.
+                                Sua renda não se encaixa nos parâmetros desse financiamento Caixa.
+                            </span><br>
+                            <a href="#about" class="js-scroll-trigger"
+                                style="background-color: rgba(0,0,0,.1);padding: 2.5px;">
+                                Tente outra renda.</a>
+                        </p>
+                    </div>
+                </div><br><br>
+
+                <div class="row card" style="min-height: 100%;
+                color: #1662a4;
+                margin-top: 50px;">
+                    <div class="row">
+
+                        <div class="col-lg-6 ml-auto" id="juros"
+                            style="display: none;border-right: 1px solid;border-color: #ccc;">
+                            <h3
+                                style="font-weight: 700;font-size: 1.5rem;text-align: center;padding: 10px;padding-top: 22px;color:#2ac677">
+                                Juros a partir de: <span style="font-size: 2.4rem"><br>4,50%</span></h3>
+                        </div>
+                        <div class="col-lg-6 mr-auto" id="prazo" style="display: none;">
+                            <h3 style="font-weight: 700;font-size: 1.5rem;text-align: center;padding: 10px;">Prazo até:
+                                <span style="font-size: 2.4rem"><br>360</span> <br>meses</h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+                var visibilidade = true;
+                function ocultar() {
+                    document.getElementById("contactForm").style.display = "none";
+                    document.getElementById("dvConteudo").style.display = "block";
+                }
+
+            </script>
+
+            <script>
+
+                var visibilidade = true;
+
+                function exibir_ocultar() {
+
+                    var valor = $("#renda").val();
+                    if (valor < 1000 || valor > 2600) {
+                        document.getElementById("invalida").style.display = "block";
+
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "none";
+                        document.getElementById("prazo").style.display = "none";
+                    }
+
+                    if (valor >= 1000 && valor <= 1099) {
+
+                        document.getElementById("s1").style.display = "block";
+
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+
+                    if (valor >= 1001 && valor <= 1100) {
+
+                        document.getElementById("s2").style.display = "block";
+
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+
+                    if (valor >= 1101 && valor <= 1200) {
+
+                        document.getElementById("s3").style.display = "block";
+
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1201 && valor <= 1300) {
+                        document.getElementById("s4").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1301 && valor <= 1400) {
+                        document.getElementById("s5").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1401 && valor <= 1500) {
+                        document.getElementById("s6").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1501 && valor <= 1600) {
+                        document.getElementById("s7").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1601 && valor <= 1700) {
+                        document.getElementById("s8").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1701 && valor <= 1800) {
+                        document.getElementById("s9").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1801 && valor <= 1900) {
+                        document.getElementById("s10").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 1901 && valor <= 2000) {
+                        document.getElementById("s11").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 2001 && valor <= 2100) {
+                        document.getElementById("s12").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 2101 && valor <= 2200) {
+                        document.getElementById("s13").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 2201 && valor <= 2300) {
+                        document.getElementById("s14").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 2301 && valor <= 2400) {
+                        document.getElementById("s15").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 2401 && valor <= 2500) {
+                        document.getElementById("s16").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s17").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                    if (valor >= 2501 && valor <= 2600) {
+                        document.getElementById("s17").style.display = "block";
+                        document.getElementById("s1").style.display = "none";
+                        document.getElementById("s2").style.display = "none";
+                        document.getElementById("s3").style.display = "none";
+                        document.getElementById("s4").style.display = "none";
+                        document.getElementById("s5").style.display = "none";
+                        document.getElementById("s6").style.display = "none";
+                        document.getElementById("s7").style.display = "none";
+                        document.getElementById("s8").style.display = "none";
+                        document.getElementById("s9").style.display = "none";
+                        document.getElementById("s10").style.display = "none";
+                        document.getElementById("s11").style.display = "none";
+                        document.getElementById("s12").style.display = "none";
+                        document.getElementById("s13").style.display = "none";
+                        document.getElementById("s14").style.display = "none";
+                        document.getElementById("s15").style.display = "none";
+                        document.getElementById("s16").style.display = "none";
+                        document.getElementById("juros").style.display = "block";
+                        document.getElementById("prazo").style.display = "block";
+                        document.getElementById("invalida").style.display = "none";
+                    }
+                };
+            </script>
+        </div>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+
+
+
+                <!-- Footer Social Icons -->
+                <div class="col-lg-4 mb-5 mb-lg-0" style="padding-top: 8px;">
+                    <span style="font-weight: 500">By: <a href="aelyssondionisio.site" target="_blank">José Aelysson
+                            Dionísio</a></span>
+                </div>
+
+
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Mdb core JavaScript -->
+    <script src="mdb/js/mdb.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
